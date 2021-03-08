@@ -2,6 +2,9 @@ package pack;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
@@ -37,5 +40,21 @@ public class ReadFiles {
         handler.setFormatter(formatter);
         
         logger.info("start");
+        
+        Path source = Paths.get(fileEntry.getPath());
+		Path target = Paths.get("/home/ridhoajibx/Documents/java/DestFile/" + fileEntry.getName());
+		if(fileEntry.getName().endsWith(".pdf") || fileEntry.getName().endsWith(".xlxs")) {
+			try {
+				Files.move(source, target);
+				logger.info("Status : Files " + source.getFileName() + " moved Successfully!");
+				logger.info("Destination : Files move to " + target.toRealPath());
+			} catch (Exception e) {
+				logger.info(e.getLocalizedMessage() + " failed to move the file");
+			}
+		} else {
+			logger.info("file extension doesn't exist!");
+		}
+		
+		logger.info("end");
 	}    
 }
