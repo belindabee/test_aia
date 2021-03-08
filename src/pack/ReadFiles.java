@@ -2,7 +2,9 @@ package pack;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.FileHandler;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class ReadFiles {
 //	static logger
@@ -10,7 +12,7 @@ public class ReadFiles {
 	
 	public static void main(String[] args) throws IOException {
 		//1. Source folder
-		final File folder = new File("/home/ridhoajibx/Documents/java/SomeFile");
+		final File folder = new File("/home/belinda/Documents/Aia_Test");
 		
 		//2. Read all files in folder
 		listFilesForFolder(folder);      
@@ -27,4 +29,13 @@ public class ReadFiles {
 	        }
 	    }
 	}
+	
+	public static void moveFile(File fileEntry) throws IOException {
+        FileHandler handler = new FileHandler("/home/belinda/Documents/Aia_Test", true);        
+        logger.addHandler(handler);
+        SimpleFormatter formatter = new SimpleFormatter();  
+        handler.setFormatter(formatter);
+        
+        logger.info("start");
+	}    
 }
